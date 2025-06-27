@@ -12,14 +12,14 @@ try {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
-},
+    },
     credentials: 'include',
     body: JSON.stringify({ correo, contraseña })
     });
 
     if (res.ok) {
-        window.location.href = 'index.html';
-} else {
+    window.location.href = 'index.html';
+    } else {
     const errorText = await res.text();
     errorMsg.textContent = errorText || 'Error al iniciar sesión';
     }
