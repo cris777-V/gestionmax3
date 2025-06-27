@@ -8,9 +8,9 @@ require('dotenv').config();
 
 const app = express();
 
-// CORS: permite solicitudes desde Netlify en desarrollo
+// ✅ Configurar CORS (para acceso desde frontend hospedado en Netlify)
 app.use(cors({
-    origin: ['https://gestionmax3.netlify.app', 'http://localhost:5173'],
+    origin: 'https://gestionmax3.netlify.app',
     credentials: true
 }));
 
@@ -27,12 +27,12 @@ app.use(session({
     }
 }));
 
-// 📦 MongoDB
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('🟢 MongoDB conectado'))
-    .catch(err => console.error('🔴 MongoDB error:', err));
+// ✅ Conexión a MongoDB
+mongoose.connect(process.env.MONGO_URI).then(() => {
+    console.log('🟢 MongoDB conectado');
+}).catch(err => console.error('🔴 MongoDB error:', err));
 
-// 👤 Modelo de usuario
+// ✅ Modelo de usuario
 const UsuarioSchema = new mongoose.Schema({
     nombre: String,
     correo: String,
@@ -67,7 +67,7 @@ app.post('/login', async (req, res) => {
     res.status(200).json({ mensaje: 'Login exitoso' });
 });
 
-// 🧠 Usuario actual
+// 🧠 Ver usuario actual
 app.get('/api/usuario-actual', async (req, res) => {
     if (!req.session.usuarioId) {
         return res.status(401).json({ mensaje: 'No autorizado' });
@@ -83,14 +83,15 @@ app.get('/logout', (req, res) => {
     });
 });
 
-// ✅ SERVIR FRONTEND ESTÁTICO (versión build)
-const frontendPath = path.join(__dirname, '..', 'frontend');
+// ✅ Servir archivos estáticos (HTML/CSS/JS del frontend)
+const frontendPath = path.resolve(__dirname, '../frontend');
 app.use(express.static(frontendPath));
 
-app.get('*', (req, res) => {
+// ✅ Para rutas no encontradas, devolver index.html (SPA o frontend simple)
+/*app.get('*', (req, res) => {
     res.sendFile(path.join(frontendPath, 'index.html'));
-});
+}); */ 
 
-// 🚀 Servidor
-const PORT = process.env.PORT || 10000;
+// 🚀 Iniciar servidor
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`🚀 Servidor en puerto ${PORT}`));
