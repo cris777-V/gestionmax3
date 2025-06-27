@@ -1,11 +1,13 @@
+// frontend/registro.js
+
 const form = document.getElementById('form-registro');
 const errorMsg = document.getElementById('error-msg');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const nombre = form.nombre.value;
-  const correo = form.correo.value;
+  const nombre = form.nombre.value.trim();
+  const correo = form.correo.value.trim();
   const contraseña = form.contraseña.value;
 
   try {
@@ -14,12 +16,12 @@ form.addEventListener('submit', async (e) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      credentials: 'include',
+      credentials: 'include', // 👈 importante para que se envíe la cookie
       body: JSON.stringify({ nombre, correo, contraseña })
     });
 
     if (res.ok) {
-      window.location.href = 'index.html';
+      window.location.href = 'login.html'; // 👈 mejor redirigir al login
     } else {
       const errorText = await res.text();
       errorMsg.textContent = errorText || 'Error al registrar';
