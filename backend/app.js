@@ -3,12 +3,14 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
 
+// CORS: permite solicitudes desde Netlify en desarrollo
 app.use(cors({
-    origin: 'https://gestionmax3.netlify.app',
+    origin: ['https://gestionmax3.netlify.app', 'http://localhost:5173'],
     credentials: true
 }));
 
@@ -20,16 +22,14 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-    httpOnly: true,
-    sameSite: 'lax'
-}
+        httpOnly: true,
+        sameSite: 'lax'
+    }
 }));
 
 // 📦 MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log('🟢 MongoDB conectado'))
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('🟢 MongoDB conectado'))
     .catch(err => console.error('🔴 MongoDB error:', err));
 
 // 👤 Modelo de usuario
@@ -67,22 +67,30 @@ app.post('/login', async (req, res) => {
     res.status(200).json({ mensaje: 'Login exitoso' });
 });
 
-// 🧠 Ver usuario actual
+// 🧠 Usuario actual
 app.get('/api/usuario-actual', async (req, res) => {
     if (!req.session.usuarioId) {
-return res.status(401).json({ mensaje: 'No autorizado' });
+        return res.status(401).json({ mensaje: 'No autorizado' });
     }
-const usuario = await Usuario.findById(req.session.usuarioId).select('-contraseña');
+    const usuario = await Usuario.findById(req.session.usuarioId).select('-contraseña');
     res.json(usuario);
 });
 
 // 🚪 Logout
 app.get('/logout', (req, res) => {
-req.session.destroy(() => {
-    res.status(200).json({ mensaje: 'Sesión cerrada' });
-});
+    req.session.destroy(() => {
+        res.status(200).json({ mensaje: 'Sesión cerrada' });
+    });
 });
 
-// 🚀 Iniciar servidor
-const PORT = process.env.PORT || 3001;
+// ✅ SERVIR FRONTEND ESTÁTICO (versión build)
+const frontendPath = path.join(__dirname, '..', 'frontend');
+app.use(express.static(frontendPath));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(frontendPath, 'index.html'));
+});
+
+// 🚀 Servidor
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`🚀 Servidor en puerto ${PORT}`));
