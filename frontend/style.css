@@ -1,50 +1,85 @@
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #f1f5f9, #e0f7fa);
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-header, footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1em 0;
-}
-
-.navbar {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 0;
-    margin: 0;
-}
-
-.navbar li a {
-    color: white;
-    text-decoration: none;
-}
-
+/* Estilo del main */
 main {
-    padding: 2em;
-    text-align: center;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
 }
 
-form {
-    background: white;
-    padding: 2em;
-    margin: auto;
-    width: 100%;
-    max-width: 400px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+/* Título */
+main h1 {
+  color: #0077cc;
+  margin-bottom: 1.5rem;
 }
 
-input, button {
-    display: block;
-    width: 100%;
-    margin-top: 1em;
-    padding: 0.8em;
-    font-size: 1em;
+/* Etiquetas */
+form label {
+  display: block;
+  margin: 0.5rem 0 0.25rem;
+  font-weight: 600;
+}
+
+/* Inputs */
+form input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s;
+}
+
+form input:focus {
+  border-color: #0077cc;
+  outline: none;
+}
+
+/* Botón */
+form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #005fa3;
+}
+
+/* Error */
+#error-msg {
+  color: crimson;
+  margin-top: 1rem;
+}
+
+/* Enlace de navegación */
+a {
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
 }
