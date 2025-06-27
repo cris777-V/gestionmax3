@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Iniciar Sesión - Gestion Max</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<main>
+    <h1>Iniciar Sesión</h1>
+
+    <form id="form-login">
+    <div>
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" required />
+    </div>
+
+    <div>
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" required />
+    </div>
+
+    <button type="submit">Login</button>
+    <p id="error-msg" style="color: red;"></p>
+    </form>
+</main>
+
+<script>
+    const form = document.getElementById('form-login');
+    const errorMsg = document.getElementById('error-msg');
+
+    form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const correo = form.correo.value;
+    const contraseña = form.contraseña.value;
+
+    try {
+    const res = await fetch('https://gestionmax3.onrender.com/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({ correo, contraseña })
+        });
+
+        if (res.ok) {
+        window.location.href = 'index.html';
+    } else {
+        const errorText = await res.text();
+        errorMsg.textContent = errorText || 'Error al iniciar sesión';
+        }
+    } catch (err) {
+        errorMsg.textContent = 'Error de red. Intenta de nuevo.';
+    }
+    });
+</script>
+
+</body>
+</html>
