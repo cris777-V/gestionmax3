@@ -1,85 +1,120 @@
-/* Estilos generales */
-body {
+/* === Reset y base === */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(to bottom right, #f1f5f9, #e0f7fa);
   color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  line-height: 1.6;
 }
 
-/* Estilo del main */
-main {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
+/* === Encabezado === */
+header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
   text-align: center;
 }
 
-/* Título */
-main h1 {
+header h1 {
   color: #0077cc;
-  margin-bottom: 1.5rem;
+  margin-bottom: 10px;
 }
 
-/* Etiquetas */
-form label {
-  display: block;
-  margin: 0.5rem 0 0.25rem;
-  font-weight: 600;
+.navbar {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 0;
 }
 
-/* Inputs */
-form input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  transition: border-color 0.3s;
-}
-
-form input:focus {
-  border-color: #0077cc;
-  outline: none;
-}
-
-/* Botón */
-form button {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  border-radius: 8px;
+.navbar li a {
+  text-decoration: none;
+  color: #0077cc;
   font-weight: bold;
-  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
   transition: background-color 0.3s;
 }
 
-form button:hover {
+.navbar li a:hover {
+  background-color: #e0f0fa;
+}
+
+/* === Main === */
+main {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+main h1,
+main h2 {
+  text-align: center;
+  color: #0d5c9e;
+  margin-bottom: 20px;
+}
+
+main p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* === Secciones === */
+.intro,
+.beneficios,
+.cta {
+  background-color: #fff;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.beneficios ul {
+  list-style: none;
+  padding-left: 0;
+  text-align: center;
+}
+
+.beneficios li {
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.cta .boton {
+  display: flex;
+  justify-content: center;   
+  align-items: center;   
+  background-color: #0077cc;
+  color: white;
+  padding: 12px 56px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  width: 100%;  
+}
+
+
+.cta .boton:hover {
   background-color: #005fa3;
 }
 
-/* Error */
-#error-msg {
-  color: crimson;
-  margin-top: 1rem;
-}
-
-/* Enlace de navegación */
-a {
-  color: #0077cc;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-a:hover {
-  text-decoration: underline;
+/* === Footer === */
+footer {
+  background-color: #ffffff;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 40px;
 }

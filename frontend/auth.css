@@ -1,0 +1,99 @@
+/* === Estilos para login y registro === */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #dbeafe, #f0f9ff);
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+main {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+    color: #1e3a8a;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+label {
+    text-align: left;
+    font-weight: 600;
+    color: #374151;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    padding: 0.7rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+button,
+input[type="submit"] {
+    padding: 0.8rem;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+/* Mensaje de error */
+#error-msg {
+    color: #dc2626;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+.footer-volver {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.footer-volver a {
+    color: #1e40af;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.footer-volver a:hover {
+    text-decoration: underline;
+}
