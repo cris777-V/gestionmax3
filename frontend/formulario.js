@@ -1,5 +1,6 @@
 // Verificar si el usuario está autenticado
 fetch('https://gestionmax3.onrender.com/api/usuario-actual', {
+  method: 'GET',
   credentials: 'include'
 })
 .then(res => {
